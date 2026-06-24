@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✦ Barbie Moodboard ✦</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink:      #FF69B4;
+    --blue:      #00BFFF;
+    --bg:        #FFF0F5;
+    --glass-bg:  rgba(255,255,255,0.45);
+    --glass-border: rgba(255,105,180,0.35);
+    --shadow-sm: 0 8px 24px rgba(255,105,180,0.22);
+    --shadow-lg: 0 20px 48px rgba(255,105,180,0.38);
+    --text-dark: #c2185b;
+    --text-mid:  #e91e8c;
+    --text-soft: #f48fb1;
+  }
+
+  /* ── BODY & MESH BG ── */
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .mesh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255,105,180,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 70% at 80% 70%, rgba(0,191,255,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 55% 10%, rgba(255,192,203,0.20) 0%, transparent 60%);
+    animation: meshMove 14s ease-in-out infinite alternate;
+    transition: transform 0.1s linear;
+  }
+  @keyframes meshMove {
+    0%   { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(12deg); }
+  }
+
+  /* ── CANVAS ── */
+  .canvas {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px 120px;
+  }
+
+  /* ── SVG PROPS LAYER ── */
+  .props-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .prop {
+    position: absolute;
+    opacity: 0.13;
+  }
+  .prop-heel    { top: 6%;  left: 2%;   width: 130px; transform: rotate(-15deg); }
+  .prop-lips    { top: 70%; left: 4%;   width: 90px;  transform: rotate(10deg);  }
+  .prop-shades  { top: 8%;  right: 3%;  width: 140px; transform: rotate(8deg);   }
+  .prop-star1   { top: 38%; right: 2%;  width: 70px;  transform: rotate(20deg);  }
+  .prop-star2   { top: 80%; right: 7%;  width: 50px;  transform: rotate(-10deg); }
+  .prop-mirror  { top: 52%; left: 1%;   width: 80px;  transform: rotate(-5deg);  }
+  .prop-crown   { top: 1%;  left: 44%;  width: 90px;  }
+  .prop-lipstick{ top: 28%; left: 0.5%; width: 60px;  transform: rotate(15deg);  }
+
+  /* ── BARBIE TITLE ── */
+  .barbie-title {
+    text-align: center;
+    margin-bottom: 52px;
+    position: relative;
+    z-index: 2;
+  }
+  .barbie-title .script {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    background: linear-gradient(135deg, #FF69B4 20%, #ff1493 55%, #00BFFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
+  .barbie-title .sub {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* ── CARD BASE ── */
+  .card {
+    position: absolute;
+    border-radius: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(14px) saturate(1.6);
+    -webkit-backdrop-filter: blur(14px) saturate(1.6);
+    border: 1.5px solid var(--glass-border);
+    box-shadow: var(--shadow-sm),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+    padding: 18px;
+    cursor: default;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    opacity: 0;
+    animation: floatIn 0.6s ease-out forwards;
+    overflow: hidden;
+  }
+  /* plastic sheen */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 60%;
+    height: 55%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.55) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .card:hover {
+    transform: translateY(-10px) scale(1.03) rotate(var(--r, 0deg)) !important;
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.8);
+    z-index: 50 !important;
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.96) rotate(var(--r, 0deg)); }
+    to   { opacity: 1; transform: translateY(0)    scale(1)    rotate(var(--r, 0deg)); }
+  }
+
+  /* ── CARD TYPOGRAPHY ── */
+  .card-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .card-body {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+  .card-tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 12px;
+    border-radius: 99px;
+    background: rgba(255,105,180,0.18);
+    color: var(--pink);
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  /* ── IMAGE PLACEHOLDER ── */
+  .img-placeholder {
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 900;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+
+  /* ── QUOTE STYLE ── */
+  .card-quote {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    text-align: center;
+    padding: 8px 4px;
+  }
+  .card-quote span {
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    margin-top: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── PALETTE DOTS ── */
+  .palette-row {
+    display: flex;
+    gap: 7px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.6);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  /* ── COLOR SWATCH ── */
+  .swatch {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ── MOODBOARD INNER CANVAS ── */
+  .inner-canvas {
+    position: relative;
+    width: 100%;
+    min-height: 1700px;
+  }
+
+  /* ── SPARKLES ── */
+  .sparkle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    animation: sparkleAnim 2.5s ease-in-out infinite;
+  }
+  @keyframes sparkleAnim {
+    0%,100% { opacity: 0.3; transform: scale(0.8); }
+    50%      { opacity: 1;   transform: scale(1.2); }
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── MOBILE: stack cards ── */
+  @media (max-width: 680px) {
+    .inner-canvas { min-height: auto; }
+    .card {
+      position: relative !important;
+      top: auto !important; left: auto !important; right: auto !important;
+      width: 90% !important;
+      margin: 12px auto;
+      transform: none !important;
+      animation: none !important;
+      opacity: 1 !important;
+    }
+    .card:hover { transform: translateY(-6px) scale(1.02) !important; }
+    .props-layer { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- mesh background -->
+<div class="mesh-bg"></div>
+
+<!-- SVG decorative props -->
+<div class="props-layer">
+
+  <!-- High Heel -->
+  <svg class="prop prop-heel" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 120 C20 120 10 125 8 132 C6 139 15 138 20 135 L70 135 C85 135 100 115 105 95 C110 75 95 50 80 35 C70 25 60 20 55 25 C50 30 55 45 60 55 L65 70 L40 120 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M55 25 C60 18 72 15 82 22 C92 29 100 45 100 60" stroke="#FF1493" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <ellipse cx="50" cy="121" rx="22" ry="6" fill="#FF1493" opacity="0.5"/>
+    <path d="M65 70 C65 70 72 90 68 110 L40 120" stroke="#c2185b" stroke-width="1.5" fill="none"/>
+  </svg>
+
+  <!-- Lips -->
+  <svg class="prop prop-lips" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 10 C35 10 15 18 10 30 C5 42 20 55 35 52 C42 51 47 46 50 43 C53 46 58 51 65 52 C80 55 95 42 90 30 C85 18 65 10 50 10Z" fill="#FF69B4"/>
+    <path d="M30 28 C35 22 45 20 50 22 C55 20 65 22 70 28" stroke="#FF1493" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M10 30 Q50 15 90 30" stroke="#FF1493" stroke-width="1.5" fill="none"/>
+    <path d="M35 52 Q50 58 65 52" stroke="#c2185b" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Sunglasses -->
+  <svg class="prop prop-shades" viewBox="0 0 160 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="15" width="60" height="42" rx="14" fill="#FF69B4" stroke="#FF1493" stroke-width="2.5"/>
+    <rect x="95" y="15" width="60" height="42" rx="14" fill="#00BFFF" stroke="#0099cc" stroke-width="2.5"/>
+    <rect x="5" y="15" width="60" height="42" rx="14" fill="rgba(255,255,255,0.15)"/>
+    <rect x="95" y="15" width="60" height="42" rx="14" fill="rgba(255,255,255,0.15)"/>
+    <line x1="65" y1="36" x2="95" y2="36" stroke="#FF69B4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="0" y1="25" x2="5" y2="30" stroke="#FF69B4" stroke-width="3" stroke-linecap="round"/>
+    <line x1="160" y1="25" x2="155" y2="30" stroke="#00BFFF" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="25" cy="28" r="6" fill="rgba(255,255,255,0.35)"/>
+    <circle cx="115" cy="28" r="6" fill="rgba(255,255,255,0.35)"/>
+  </svg>
+
+  <!-- Star 1 -->
+  <svg class="prop prop-star1" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M40 5 L47 30 L73 30 L52 47 L60 72 L40 57 L20 72 L28 47 L7 30 L33 30 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="2"/>
+  </svg>
+
+  <!-- Star 2 (blue) -->
+  <svg class="prop prop-star2" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 4 L35 22 L53 22 L39 33 L44 51 L30 41 L16 51 L21 33 L7 22 L25 22 Z" fill="#00BFFF" stroke="#0099cc" stroke-width="1.5"/>
+  </svg>
+
+  <!-- Hand Mirror -->
+  <svg class="prop prop-mirror" viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="40" cy="40" rx="32" ry="36" fill="none" stroke="#FF69B4" stroke-width="4"/>
+    <ellipse cx="40" cy="40" rx="24" ry="28" fill="rgba(255,105,180,0.12)" stroke="#FF69B4" stroke-width="1.5"/>
+    <rect x="36" y="74" width="8" height="40" rx="4" fill="#FF69B4"/>
+    <ellipse cx="40" cy="25" rx="8" ry="5" fill="rgba(255,255,255,0.35)"/>
+  </svg>
+
+  <!-- Crown -->
+  <svg class="prop prop-crown" viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 60 L15 20 L30 45 L50 5 L70 45 L85 20 L95 60 Z" fill="#FF69B4" stroke="#FF1493" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="5" y="58" width="90" height="10" rx="3" fill="#FF1493"/>
+    <circle cx="50" cy="8" r="5" fill="#00BFFF"/>
+    <circle cx="15" cy="22" r="4" fill="#00BFFF"/>
+    <circle cx="85" cy="22" r="4" fill="#00BFFF"/>
+  </svg>
+
+  <!-- Lipstick tube -->
+  <svg class="prop prop-lipstick" viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="40" width="20" height="55" rx="4" fill="#FF69B4" stroke="#FF1493" stroke-width="2"/>
+    <rect x="12" y="25" width="16" height="20" rx="2" fill="#FF69B4" stroke="#FF1493" stroke-width="1.5"/>
+    <path d="M12 25 Q20 10 28 25" fill="#FF1493"/>
+    <rect x="14" y="45" width="5" height="20" rx="2" fill="rgba(255,255,255,0.25)"/>
+  </svg>
+
+</div>
+
+<!-- MAIN CANVAS -->
+<div class="canvas">
+
+  <!-- Title -->
+  <div class="barbie-title">
+    <div class="script">Barbie Moodboard</div>
+    <div class="sub">✦ dreamhouse vibes ✦ pink world ✦</div>
+  </div>
+
+  <!-- Sparkles -->
+  <svg class="sparkle" style="top:18%;left:22%;width:22px;animation-delay:0s"    viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z" fill="#FF69B4"/></svg>
+  <svg class="sparkle" style="top:44%;left:78%;width:16px;animation-delay:0.8s"  viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z" fill="#00BFFF"/></svg>
+  <svg class="sparkle" style="top:72%;left:35%;width:14px;animation-delay:1.4s"  viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z" fill="#FF69B4"/></svg>
+  <svg class="sparkle" style="top:60%;left:60%;width:18px;animation-delay:0.4s"  viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z" fill="#FF1493"/></svg>
+  <svg class="sparkle" style="top:85%;left:15%;width:12px;animation-delay:1.9s"  viewBox="0 0 20 20"><path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z" fill="#00BFFF"/></svg>
+
+  <!-- ====== MOODBOARD CARDS ====== -->
+  <div class="inner-canvas">
+
+    <!-- CARD 1 · tall image + quote — far left -->
+    <div class="card" style="--r:-3deg; left:3%; top:0px; width:clamp(175px,21%,235px);">
+      <div class="img-placeholder" style="height:170px;background:linear-gradient(145deg,#FF69B4,#FF1493)">🎀</div>
+      <div class="card-label">mood</div>
+      <div class="card-title">Pink Dreams</div>
+      <div class="card-body">everything is possible in a plastic pink world.</div>
+      <span class="card-tag">#barbiecore</span>
+    </div>
+
+    <!-- CARD 2 · wide center quote -->
+    <div class="card" style="--r:2deg; left:28%; top:0px; width:clamp(220px,34%,380px); text-align:center;">
+      <div class="card-quote">
+        "Life in plastic — it's fantastic."
+        <span>✦ iconic ✦</span>
+      </div>
+    </div>
+
+    <!-- CARD 3 · palette — far right -->
+    <div class="card" style="--r:4deg; right:3%; top:10px; width:clamp(155px,19%,205px);">
+      <div class="card-label">palette</div>
+      <div class="card-title" style="font-size:1.05rem">Dreamhouse<br>Colors</div>
+      <div class="palette-row">
+        <div class="dot" style="background:#FF69B4"></div>
+        <div class="dot" style="background:#FF1493"></div>
+        <div class="dot" style="background:#00BFFF"></div>
+        <div class="dot" style="background:#FFB6C1;border-color:#f48fb1"></div>
+        <div class="dot" style="background:#c2185b"></div>
+        <div class="dot" style="background:#FFF0F5;border-color:#f48fb1"></div>
+      </div>
+      <div class="card-body" style="margin-top:12px;font-size:0.8rem">every shade of pink ✦</div>
+    </div>
+
+    <!-- CARD 4 · image mid-left -->
+    <div class="card" style="--r:-5deg; left:17%; top:195px; width:clamp(170px,23%,255px);">
+      <div class="img-placeholder" style="height:130px;background:linear-gradient(135deg,#FFB6C1,#FF69B4)">💄</div>
+      <div class="card-label">beauty</div>
+      <div class="card-body">bold lips, glossy life, no apologies.</div>
+    </div>
+
+    <!-- CARD 5 · text center -->
+    <div class="card" style="--r:1.5deg; left:38%; top:175px; width:clamp(200px,26%,285px);">
+      <div class="card-label">inspo</div>
+      <div class="card-title">Y2K Glam</div>
+      <div class="card-body">butterfly clips, frosted shadow, mirrored mini bags — the aesthetic that never left.</div>
+      <span class="card-tag">#y2k</span>
+      <span class="card-tag" style="margin-left:4px;background:rgba(0,191,255,0.15);color:#00BFFF">#glam</span>
+    </div>
+
+    <!-- CARD 6 · swatch stack far right -->
+    <div class="card" style="--r:-2deg; right:4%; top:195px; width:clamp(145px,17%,195px);">
+      <div class="swatch" style="height:85px;background:linear-gradient(180deg,#FF69B4,#FF1493)"></div>
+      <div class="swatch" style="height:50px;background:linear-gradient(180deg,#00BFFF,#0099cc)"></div>
+      <div class="swatch" style="height:38px;background:#FFF0F5;border:1.5px solid #f48fb1"></div>
+      <div class="card-body" style="margin-top:6px;font-size:0.78rem;text-align:center">color story ✦</div>
+    </div>
+
+    <!-- CARD 7 · wide image lower-left -->
+    <div class="card" style="--r:3deg; left:3%; top:440px; width:clamp(200px,29%,315px);">
+      <div class="img-placeholder" style="height:115px;background:linear-gradient(120deg,#FF69B4 0%,#00BFFF 100%)">✨</div>
+      <div class="card-label">texture</div>
+      <div class="card-title" style="font-size:1.1rem">Glossy &amp; Plastic</div>
+      <div class="card-body">that high-shine, candy-coated finish.</div>
+    </div>
+
+    <!-- CARD 8 · image + quote center -->
+    <div class="card" style="--r:-1.5deg; left:35%; top:440px; width:clamp(195px,27%,300px); text-align:center;">
+      <div class="img-placeholder" style="height:95px;background:linear-gradient(145deg,#FFB6C1,#c2185b)">👠</div>
+      <div class="card-quote" style="font-size:0.92rem">
+        "She's everything. He's just Ken."
+        <span>✦ dreamhouse canon ✦</span>
+      </div>
+    </div>
+
+    <!-- CARD 9 · tall far right -->
+    <div class="card" style="--r:5deg; right:3%; top:450px; width:clamp(155px,19%,215px);">
+      <div class="img-placeholder" style="height:195px;background:linear-gradient(180deg,#FF1493 0%,#FF69B4 60%,#FFB6C1 100%)">🌸</div>
+      <div class="card-label">vibe</div>
+      <div class="card-body">soft, bold, unapologetically pink.</div>
+    </div>
+
+    <!-- CARD 10 · lower left -->
+    <div class="card" style="--r:-4deg; left:5%; top:740px; width:clamp(165px,21%,235px);">
+      <div class="card-label">material</div>
+      <div class="card-title" style="font-size:1.05rem">Vinyl &amp;<br>Velvet</div>
+      <div class="card-body">the tactile language of the Barbie world — shiny meets plush.</div>
+      <span class="card-tag">#texture</span>
+    </div>
+
+    <!-- CARD 11 · lower center wide -->
+    <div class="card" style="--r:2.5deg; left:30%; top:770px; width:clamp(220px,31%,355px);">
+      <div class="img-placeholder" style="height:95px;background:linear-gradient(90deg,#FF69B4,#FFB6C1,#00BFFF)">🎀 ✨ 💙</div>
+      <div class="card-label">color clash</div>
+      <div class="card-title">Pink × Electric Blue</div>
+      <div class="card-body">the tension between warm bubblegum and cool neon — that's the Y2K heartbeat.</div>
+    </div>
+
+    <!-- CARD 12 · lower right emoji -->
+    <div class="card" style="--r:-3.5deg; right:4%; top:755px; width:clamp(155px,19%,205px); text-align:center;">
+      <div style="font-size:3.5rem;margin-bottom:10px;line-height:1">💖</div>
+      <div class="card-quote" style="font-size:0.88rem">
+        Come on Barbie, let's go party.
+        <span>✦ forever ✦</span>
+      </div>
+    </div>
+
+    <!-- CARD 13 · bottom left-center image -->
+    <div class="card" style="--r:1deg; left:18%; top:1070px; width:clamp(200px,27%,295px);">
+      <div class="img-placeholder" style="height:125px;background:linear-gradient(135deg,#c2185b,#FF69B4,#FFB6C1)">🫧</div>
+      <div class="card-label">aesthetic</div>
+      <div class="card-body">iridescent, prismatic, bubblegum haze. a world saturated in itself.</div>
+    </div>
+
+    <!-- CARD 14 · bottom right note -->
+    <div class="card" style="--r:-2.5deg; right:7%; top:1055px; width:clamp(165px,21%,235px);">
+      <div class="card-label">a note</div>
+      <div class="card-title" style="font-size:0.98rem">Make It<br>Yours ✦</div>
+      <div class="card-body" style="font-size:0.82rem">swap the color blocks for your own photos. this is your dreamhouse. 🎀</div>
+      <span class="card-tag" style="background:rgba(0,191,255,0.15);color:#00BFFF">#customise</span>
+    </div>
+
+  </div><!-- /inner-canvas -->
+
+  <div class="footer">✦ made with pink &amp; love ✦ barbie moodboard ✦ your dreamhouse, your rules ✦</div>
+</div>
+
+<script>
+  // Stagger entrance animations
+  document.querySelectorAll('.card').forEach((card, i) => {
+    card.style.animationDelay = (0.05 + i * 0.07) + 's';
+  });
+
+  // Subtle parallax on mouse move (fine pointer / desktop only)
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const mesh = document.querySelector('.mesh-bg');
+    let ticking = false;
+    document.addEventListener('mousemove', (e) => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const cx = (e.clientX / window.innerWidth  - 0.5) * 18;
+        const cy = (e.clientY / window.innerHeight - 0.5) * 10;
+        mesh.style.transform = `translate(${cx}px, ${cy}px) scale(1.04)`;
+        ticking = false;
+      });
+    });
+  }
+</script>
+</body>
+</html>
